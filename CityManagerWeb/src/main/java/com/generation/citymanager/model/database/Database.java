@@ -15,4 +15,6 @@ public interface Database
 	List<Citizen> getCitizen(String key);
 
 	List<Body> getFreeHouses(String cityID, int minsize);
+	
+	List<Body> getBodies(String type);
 }

@@ -78,5 +78,19 @@ public class MockDatabase implements Database
 			}
 		return res;
 	}
+	
+	public List<Body> getBodies()
+	{
+		List<Body> res = new ArrayList<Body>();
+		for(City c : getCities())
+			res.addAll(c.bodies);
+		return res;
+	}
+
+	@Override
+	public List<Body> getBodies(String type)
+	{
+		return getBodies().stream().filter(b -> b.type.equalsIgnoreCase(type)).toList();
+	}
 
 }

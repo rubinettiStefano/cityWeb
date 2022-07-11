@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.generation.citymanager.model.database.Database;
 import com.generation.citymanager.model.database.MockDatabase;
+import com.generation.citymanager.model.entities.Body;
 import com.generation.citymanager.model.entities.Citizen;
 import com.generation.citymanager.model.entities.City;
 
@@ -73,6 +74,12 @@ public class Index extends HttpServlet {
     										)
 								  );
 				request.getRequestDispatcher("FreeHouses.jsp").forward(request, response);
+			break;
+			case "findbytype":
+				String type = request.getParameter("type");
+				List<Body> bodies = database.getBodies(type);
+				request.setAttribute("bodies", bodies);
+				request.getRequestDispatcher("BodiesByType.jsp").forward(request, response);
 			break;
 			default:
 				response.getWriter().append("Comando non riconosciuto");
