@@ -15,13 +15,10 @@
 		<link rel="stylesheet" href="city.css">
 	</head>
 	<body>
-		<h1 class="w3-teal">Searching Free Houses</h1>
+		<h1 class="w3-teal">Searching Free Houses in <b><%= request.getParameter("cityID")%></b>, Minimum Size: <%= request.getParameter("minsize")%> Units</h1>
 		<div>
 			<h2> Free Buildings</h2>
 			<div class="w3-row tableheader">
-				<div class="w3-quarter">	
-					City
-				</div>
 				<div class="w3-quarter">	
 					ID  
 				</div>
@@ -31,15 +28,18 @@
 				<div class="w3-quarter">	
 					Geometry
 				</div>
+				<div class="w3-quarter">	
+					Size
+				</div>
 			</div>
 			<%
 				for(Body b :bodies)
 				{
 			%>
 				<div class="w3-row">
-					<div class="w3-quarter"><%=b.city.name%></div>
 					<div class="w3-quarter"><%=b.ID%></div>
 					<div class="w3-quarter"><%=b.name%></div>
+					<div class="w3-quarter">From (<%=b.left%>,<%=b.bottom%>) To (<%=b.right%>,<%=b.top%>)</div>
 					<div class="w3-quarter"><%= b.getArea()%> Units</div>
 				</div>
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
