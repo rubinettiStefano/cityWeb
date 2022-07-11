@@ -1,11 +1,17 @@
 package com.generation.citymanager.controller.servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.generation.citymanager.model.database.Database;
+import com.generation.citymanager.model.database.MockDatabase;
+import com.generation.citymanager.model.entities.City;
 
 /**
  * Servlet implementation class Index
@@ -29,14 +35,24 @@ public class Index extends HttpServlet {
 		
 		String cmd = request.getParameter("cmd");
 		if(cmd==null) cmd = "";
+		Database database = new MockDatabase();
 		
 		switch(cmd)
 		{
 			case "list":
-				response.getWriter().append("Qui dovrebbe comparire la lista delle città");
+			{
+				List<City> cities = database.getCities();
+				request.setAttribute("cities", cities);
+				
+				request.getRequestDispatcher("CityList.jsp").forward(request, response);
+			}
 			break;
 			case "city":
-				response.getWriter().append("Qui dovrebbe comparire il dettaglio di una città");
+			{
+				String ID = request.getParameter("ID");
+				request.setAttribute("city", database.getCity(ID));
+				request.getRequestDispatcher("CityDetail.jsp").forward(request, response);
+			}
 			break;
 			case "formnewcity":
 				response.getWriter().append("Qui dovrebbe comparire la form per inserire una nuova città");

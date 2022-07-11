@@ -24,5 +24,14 @@ public class MockDatabase implements Database
 	{
 		return cities;
 	}
+	
+	@Override
+	public City getCity(String ID)
+	{
+		for(City c : cities)
+			if(c.ID.equals(ID))
+				return c;
+		return null;
+	}
 
 }

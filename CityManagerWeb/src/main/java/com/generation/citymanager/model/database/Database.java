@@ -7,4 +7,6 @@ import com.generation.citymanager.model.entities.City;
 public interface Database
 {
 	List<City> getCities();
+
+	City getCity(String ID);
 }
