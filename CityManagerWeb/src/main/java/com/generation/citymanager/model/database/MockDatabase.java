@@ -15,6 +15,7 @@ public class MockDatabase implements Database
 	public MockDatabase()
 	{
 		City city  = new City("CITY01","Monza",100,100);
+		
 		Body b1 = new Body("BODY01", "Residential", "Casa Prof",1,1,2,2);
 		b1.addCitizen(new Citizen("CITIZEN01","Stefano","Rubinetti"));
 		b1.addCitizen(new Citizen("CITIZEN02","Ferdinando","Primerano"));
@@ -22,6 +23,11 @@ public class MockDatabase implements Database
 		Body b2 = new Body("BODY02","Park","Parco di Monza", 10,10,30,30);
 		b2.addCitizen(new Citizen("CITIZEN03","Gianni","Pinotto"));
 		city.addBody(b2);
+		Body b3 = new Body("BODY03", "Residential", "Casa Vuota Grande",40,40,45,45);
+		city.addBody(b3);
+		Body b4 = new Body("BODY04", "Residential", "Casa Vuota Piccola",46,46,47,47);
+		city.addBody(b4);
+		
 
 		
 		cities.add(city);
@@ -55,6 +61,21 @@ public class MockDatabase implements Database
 				for(Citizen c : b.citizens)
 					if((c.name + c.surname).toLowerCase().contains(key.toLowerCase()))
 						res.add(c);
+		return res;
+	}
+
+	@Override
+	public List<Body> getFreeHouses(String cityID, int minsize)
+	{
+		List<Body> res = new ArrayList<Body>();
+		for(City c : getCities())
+			if(c.ID.equalsIgnoreCase(cityID))
+			{
+				for(Body b : c.bodies)
+					if(b.getArea()>=minsize && b.type.equals("Residential") && b.citizens.isEmpty())
+						res.add(b);
+				break;
+			}
 		return res;
 	}
 

@@ -64,6 +64,16 @@ public class Index extends HttpServlet {
 				request.setAttribute("citizens", citizens);
 				request.getRequestDispatcher("CitizenSearch.jsp").forward(request, response);
 			break;
+			case "findhome":
+				request.setAttribute(	"bodies" , 
+										database.getFreeHouses
+    										(
+												request.getParameter("cityID"),
+												Integer.parseInt(request.getParameter("minsize"))
+    										)
+								  );
+				request.getRequestDispatcher("FreeHouses.jsp").forward(request, response);
+			break;
 			default:
 				response.getWriter().append("Comando non riconosciuto");
 		}

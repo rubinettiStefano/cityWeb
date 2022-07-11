@@ -10,7 +10,7 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
-		<title>City Manager 1.0 - List of managed cities</title>
+		<title>City Manager 1.0 - List searched citizens</title>
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<link rel="stylesheet" href="city.css">
 	</head>
