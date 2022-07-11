@@ -4,7 +4,7 @@
 	    
 %>
 <%
-	City c = (City) request.getAttribute("city");
+	City city = (City) request.getAttribute("city");
 %>
 <!DOCTYPE html>
 <html>
@@ -15,36 +15,52 @@
 		<link rel="stylesheet" href="city.css">
 	</head>
 	<body>
-		<h1 class="w3-teal"> City Details</h1>
-		<div class="w3-half">
+		<h1 class="w3-teal"> Details Page for: <b> <%=city.ID %> - <%=city.name %></b></h1>
+		<div>
+			<h2> General Information</h2>
+			ID: <b><%=city.ID %></b> <br/>
+			Name: <b><%=city.name %></b> <br/>
+			Geometry: <b><%=city.w %> x <%=city.h %></b> blocks <br/>
+		
+			<h2> Buildings</h2>
 			<div class="w3-row tableheader">
 				<div class="w3-quarter">	
-					ID
+					ID - Name
 				</div>
 				<div class="w3-quarter">	
-					Name
+					Type
 				</div>
 				<div class="w3-quarter">	
-					Width
+					Geometry
 				</div>
 				<div class="w3-quarter">	
-					Height
+					Citizens
 				</div>
 			</div>
-			<div class="w3-row">
-				<div class="w3-quarter">	
-					<%=c.ID %> 
+			<%
+				for(Body b : city.bodies)
+				{
+			%>
+				<div class="w3-row">
+					<div class="w3-quarter"><b><%=b.ID%></b> - <%=b.name%></div>
+					<div class="w3-quarter"><%=b.type%></div>
+					<div class="w3-quarter">(<%=b.left%>,<%=b.bottom%>)-(<%=b.right%>,<%=b.top%>)</div>
+					<div class="w3-quarter">
+						<%
+							for(Citizen c : b.citizens)
+							{
+						%>
+								<%=c.ID%> <%=c.name%> <%=c.surname%>  <br/>
+						<%
+							}
+						%>
+					</div>
 				</div>
-				<div class="w3-quarter">	
-					<%=c.name %>
-				</div>
-				<div class="w3-quarter">	
-					 <%=c.w %>
-				</div>
-				<div class="w3-quarter">	
-					<%=c.h %> 
-				</div>
-			</div>
+				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			<%
+				}
+			%>
 		</div>
+		
 	</body>
 </html>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.generation.citymanager.model.database.Database;
 import com.generation.citymanager.model.database.MockDatabase;
+import com.generation.citymanager.model.entities.Citizen;
 import com.generation.citymanager.model.entities.City;
 
 /**
@@ -56,6 +57,12 @@ public class Index extends HttpServlet {
 			break;
 			case "formnewcity":
 				response.getWriter().append("Qui dovrebbe comparire la form per inserire una nuova città");
+			break;
+			case "searchcitizen":
+				String key = request.getParameter("key");
+				List<Citizen> citizens = database.getCitizen(key);
+				request.setAttribute("citizens", citizens);
+				request.getRequestDispatcher("CitizenSearch.jsp").forward(request, response);
 			break;
 			default:
 				response.getWriter().append("Comando non riconosciuto");

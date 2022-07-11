@@ -10,7 +10,7 @@ public class Citizen extends Entity
 	
 	// riferimenti all edificio in cui abito(chiave esterna e collegamento diretto)
 	public String bodyID;
-	Body body;
+	public Body body;
 	
 	public Citizen(String ID, String name, String surname, String bodyID) 
 	{
@@ -18,6 +18,13 @@ public class Citizen extends Entity
 		this.name = name;
 		this.surname = surname;
 		this.bodyID = bodyID;
+	}
+	
+	public Citizen(String ID, String name, String surname) 
+	{
+		this.ID   = ID;
+		this.name = name;
+		this.surname = surname;
 	}
 	
 	public Citizen(String csv) // COSTRUTTORE DA CSV

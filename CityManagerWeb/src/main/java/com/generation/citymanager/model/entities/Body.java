@@ -22,7 +22,7 @@ public class Body extends Entity
 	Segment vertical;
 	//CHIAVE ESTERNA
 	public String cityID;
-	City city;
+	public City city;
 	public List<Citizen> citizens = new ArrayList<Citizen>();
 	List<Review> reviews = new ArrayList<Review>(); // LISTA VUOTA
 	
